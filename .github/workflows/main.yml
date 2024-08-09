@@ -1,14 +1,17 @@
-name: Hello World
+name: Test Workflow Dispatch
 
-on: 
-  push:
-    branches:
-      - dev
+on:
+  workflow_dispatch:
+    inputs:
+      test_input:
+        description: 'Test input'
+        required: true
+        type: string
 
 jobs:
-  hello-world-job:
+  test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Print Hello World
-        run: echo "Hello, World!"
+      - name: Print Test Input
+        run: |
+          echo "Test Input: ${{ github.event.inputs.test_input }}"
